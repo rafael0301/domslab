@@ -23,6 +23,7 @@ const ordenCompraRepository = new OrdenCompraRepository();
 const facturaRepository = new FacturaRepository();
 const devolucionRepository = new DevolucionRepository();
 
+
 // Inicialización de servicios
 const serviceLocator = ServiceLocator.getInstance();
 const usuarioService = new UsuarioService(usuarioRepository, rolRepository);
