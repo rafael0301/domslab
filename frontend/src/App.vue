@@ -37,14 +37,14 @@
           <!-- Elementos de la derecha: Perfil, Notificaciones, etc. -->
           <div class="flex items-center space-x-4">
             <!-- Icono de notificaciones -->
-            <button class="p-2 text-text-secondary hover:text-primary rounded-full hover:bg-secondary-light">
+            <button class="p-2 text-text-secondary hover:text-primary rounded-full hover:bg-secondary-light transition-colors duration-200">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
               </svg>
             </button>
 
             <!-- Icono de búsqueda -->
-            <button class="p-2 text-text-secondary hover:text-primary rounded-full hover:bg-secondary-light">
+            <button class="p-2 text-text-secondary hover:text-primary rounded-full hover:bg-secondary-light transition-colors duration-200">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
               </svg>
@@ -52,7 +52,7 @@
 
             <!-- Menú de usuario -->
             <div class="relative">
-              <button class="flex items-center text-text-secondary hover:text-text-primary">
+              <button class="flex items-center text-text-secondary hover:text-text-primary transition-colors duration-200">
                 <img class="h-8 w-8 rounded-full" src="https://i.pravatar.cc/300" alt="Avatar de usuario" />
                 <span class="ml-2 text-sm font-medium hidden md:block">Admin</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
@@ -75,7 +75,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-surface border-t border-border">
+    <footer class="bg-secondary-light border-t border-border">
       <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row justify-center items-center">
           <div class="mb-4 md:mb-0">
@@ -112,43 +112,10 @@ const menuItems = ref([
   opacity: 0;
 }
 
-/* Estilos para el scrollbar personalizado */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #a1a1a1;
-}
-
 /* Ajuste para pantallas pequeñas */
 @media (max-width: 640px) {
   .sm\:space-x-8 > * + * {
     margin-left: 0;
   }
-}
-
-/* Utilidades adicionales */
-.text-truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 </style>

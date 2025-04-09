@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    darkMode: false,
     content: [
         "./index.html",
         "./src/**/*.{vue,js,ts,jsx,tsx}",
@@ -8,29 +7,27 @@ export default {
     theme: {
         extend: {
             colors: {
-                // Paleta inspirada en un diseño limpio/corporativo
                 primary: {
-                    light: '#3b82f6', // Azul claro para hover/estados
-                    DEFAULT: '#2563eb', // Azul principal
-                    dark: '#1d4ed8' // Azul oscuro para active/foco
+                    light: '#3b82f6',
+                    DEFAULT: '#2563eb',
+                    dark: '#1d4ed8'
                 },
                 secondary: {
                     light: '#f3f4f6',
                     DEFAULT: '#e5e7eb',
                     dark: '#d1d5db'
                 },
-                background: '#ffffff', // Fondo blanco
-                surface: '#ffffff', // Superficie de los cards/contenedores
+                background: '#ffffff',
+                surface: '#ffffff',
                 text: {
-                    primary: '#1f2937', // Gris muy oscuro para texto principal
-                    secondary: '#6b7280', // Gris medio para texto secundario
-                    accent: '#2563eb' // Color de acento para enlaces
+                    primary: '#1f2937',
+                    secondary: '#6b7280',
+                    accent: '#2563eb'
                 },
-                border: '#e5e7eb' // Color de borde sutil
+                border: '#e5e7eb'
             },
             fontFamily: {
-                // Opcional: Definir una fuente más limpia si se instala
-                // sans: ['Inter', 'sans-serif'],
+                sans: ['Inter', 'sans-serif'],
             },
             boxShadow: {
                 'subtle': '0 1px 3px 0 rgb(0 0 0 / 0.05), 0 1px 2px -1px rgb(0 0 0 / 0.05)',
