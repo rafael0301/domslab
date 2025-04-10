@@ -1,6 +1,5 @@
 <template>
   <div class="space-y-6">
-    <!-- Encabezado -->
     <section class="flex justify-between items-center">
       <h1 class="text-2xl font-semibold text-text-primary">Gestión de Pedidos</h1>
       <button @click="abrirModal()" class="btn btn-primary">
@@ -11,7 +10,6 @@
       </button>
     </section>
 
-    <!-- Filtros -->
     <section class="card p-4 grid grid-cols-1 md:grid-cols-4 gap-4">
       <input
           type="text"
@@ -34,7 +32,6 @@
       >
     </section>
 
-    <!-- Tabla de Pedidos -->
     <section class="card">
       <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-border">
@@ -66,14 +63,13 @@
                     pedido.estado === 'Despachado' ? 'bg-blue-100 text-blue-800' :
                     pedido.estado === 'En Proceso' ? 'bg-yellow-100 text-yellow-800' :
                     pedido.estado === 'Pendiente' ? 'bg-gray-100 text-gray-800' :
-                    'bg-red-100 text-red-800' // Cancelado
+                    'bg-red-100 text-red-800' 
                   ]"
                 >
                   {{ pedido.estado }}
                 </span>
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-3">
-              <!-- Podríamos añadir un dropdown aquí con más acciones -->
               <button @click="abrirModal(pedido)" class="text-primary hover:text-primary-dark">Editar</button>
               <button v-if="pedido.estado === 'Pendiente'" @click="cancelarPedido(pedido.id)" class="text-red-600 hover:text-red-800">Cancelar</button>
             </td>
@@ -86,7 +82,6 @@
       </div>
     </section>
 
-    <!-- Modal -->
     <div v-if="showModal" class="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-50 flex items-center justify-center p-4">
       <div class="relative bg-white rounded-lg shadow-xl w-full max-w-2xl mx-auto">
         <div class="flex justify-between items-center p-5 border-b border-border">
@@ -185,7 +180,6 @@
 <script setup>
 import { ref, computed } from 'vue'
 
-// --- Datos de ejemplo (Idealmente vendrían de stores/API) ---
 const clientes = ref([
   { id: 1, nombre: 'Constructora XYZ' },
   { id: 2, nombre: 'Inversiones ABC' },
@@ -221,7 +215,7 @@ const filtroFecha = ref('')
 const getInitialFormState = () => ({
   id: null,
   clienteId: '',
-  fechaPedido: new Date().toISOString().split('T')[0], // Fecha actual por defecto
+  fechaPedido: new Date().toISOString().split('T')[0], 
   fechaDespachoProg: '',
   estado: 'Pendiente',
   direccionEntrega: '',
@@ -254,13 +248,13 @@ const pedidosFiltrados = computed(() => {
     const matchEstado = !filtroEstado.value || p.estado === filtroEstado.value
     const matchFecha = !filtroFecha.value || p.fechaPedido === filtroFecha.value || p.fechaDespachoProg === filtroFecha.value
     return matchSearch && matchEstado && matchFecha
-  }).sort((a, b) => new Date(b.fechaPedido) - new Date(a.fechaPedido)) // Ordenar por fecha pedido descendente
+  }).sort((a, b) => new Date(b.fechaPedido) - new Date(a.fechaPedido)) 
 })
 
 const abrirModal = (pedido = null) => {
   if (pedido) {
     pedidoSeleccionado.value = pedido
-    formPedido.value = JSON.parse(JSON.stringify(pedido)) // Deep copy para edición
+    formPedido.value = JSON.parse(JSON.stringify(pedido)) 
   } else {
     pedidoSeleccionado.value = null
     formPedido.value = getInitialFormState()
@@ -284,7 +278,7 @@ const eliminarItem = (index) => {
   if(formPedido.value.items.length > 1) {
     formPedido.value.items.splice(index, 1)
   } else {
-    alert("Un pedido debe tener al menos un item.") // O manejo más sofisticado
+    alert("Un pedido debe tener al menos un item.") 
   }
 }
 
@@ -293,8 +287,8 @@ const guardarPedido = () => {
     const index = pedidos.value.findIndex(p => p.id === pedidoSeleccionado.value.id)
     if (index !== -1) pedidos.value[index] = { ...formPedido.value }
   } else {
-    const newId = `PED-${String(pedidos.value.length + 126).padStart(5, '0')}` // Simulación de ID
-    pedidos.value.unshift({ ...formPedido.value, id: newId }) // Añadir al principio
+    const newId = `PED-${String(pedidos.value.length + 126).padStart(5, '0')}` 
+    pedidos.value.unshift({ ...formPedido.value, id: newId }) 
   }
   cerrarModal()
 }
@@ -303,20 +297,17 @@ const cancelarPedido = (id) => {
   if (confirm('¿Estás seguro de cancelar este pedido?')) {
     const index = pedidos.value.findIndex(p => p.id === id)
     if (index !== -1) pedidos.value[index].estado = 'Cancelado'
-    // Llamada API para cancelar
   }
 }
 
 const verDetalle = (pedido) => {
-  // Implementar lógica para mostrar detalle (ej: abrir modal en modo lectura o ir a otra ruta)
   console.log("Ver detalle:", pedido)
-  abrirModal(pedido) // Por ahora, reusamos el modal de edición
+  abrirModal(pedido)
 }
 
 </script>
 
 <style scoped>
-/* Estilos modal */
 .modal-enter-active,
 .modal-leave-active {
   transition: opacity 0.3s ease;

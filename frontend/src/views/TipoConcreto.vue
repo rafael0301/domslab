@@ -1,6 +1,5 @@
 <template>
   <div class="space-y-6">
-    <!-- Encabezado -->
     <section class="flex justify-between items-center">
       <h1 class="text-2xl font-semibold text-text-primary">Tipos de Concreto</h1>
       <button @click="abrirModal()" class="btn btn-primary">
@@ -11,7 +10,6 @@
       </button>
     </section>
 
-    <!-- Filtros (Opcional) -->
     <section class="card p-4 grid grid-cols-1 md:grid-cols-3 gap-4">
       <input
           type="text"
@@ -30,7 +28,6 @@
       </select>
     </section>
 
-    <!-- Grid de Tipos de Concreto -->
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div v-for="tipo in tiposFiltrados" :key="tipo.id" class="card flex flex-col">
         <div class="p-5 flex-grow">
@@ -60,7 +57,6 @@
       </div>
     </section>
 
-    <!-- Modal -->
     <div v-if="showModal" class="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-50 flex items-center justify-center p-4">
       <div class="relative bg-white rounded-lg shadow-xl w-full max-w-lg mx-auto">
         <div class="flex justify-between items-center p-5 border-b border-border">
@@ -140,7 +136,6 @@ const getInitialFormState = () => ({
 
 const formTipo = ref(getInitialFormState())
 
-// Datos de ejemplo
 const tipos = ref([
   { id: 1, nombre: 'Hormigón Estructural H20', codigo: 'HE-H20', categoria: 'Hormigón', descripcion: 'Uso general en estructuras', resistencia: 20, precio_m3: 85.50, uso: 'Losas, vigas, columnas pequeñas' },
   { id: 2, nombre: 'Hormigón Alta Resistencia H30', codigo: 'HE-H30', categoria: 'Hormigón', descripcion: 'Para elementos de alta exigencia', resistencia: 30, precio_m3: 95.00, uso: 'Columnas grandes, puentes, pavimentos' },
@@ -208,7 +203,6 @@ const eliminarTipo = (id) => {
 </script>
 
 <style scoped>
-/* Estilos modal reutilizados de Clientes.vue si se ponen globales, o copiar aquí */
 .modal-enter-active,
 .modal-leave-active {
   transition: opacity 0.3s ease;
