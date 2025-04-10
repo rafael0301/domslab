@@ -12,7 +12,6 @@ class Transaccion {
 
     procesarPago() {
         try {
-            // Aquí iría la lógica de integración con el procesador de pagos
             this.estado = 'COMPLETADA';
             this.fechaActualizacion = new Date();
             return true;
@@ -29,7 +28,6 @@ class Transaccion {
         }
 
         try {
-            // Aquí iría la lógica de reembolso
             this.estado = 'REEMBOLSADA';
             this.fechaActualizacion = new Date();
             return true;

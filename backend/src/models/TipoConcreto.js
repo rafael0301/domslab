@@ -9,7 +9,6 @@ class TipoConcreto {
     }
 
     definirReceta(materiales) {
-        // materiales es un Map<Material, cantidad> donde cantidad es por m³
         this.receta = new Map(materiales);
     }
 

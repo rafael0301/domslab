@@ -6,7 +6,6 @@ class OrdenProduccionService {
     }
 
     async crearOrdenProduccion(ordenData) {
-        // Verificar disponibilidad de materiales antes de crear la orden
         const materialesNecesarios = ordenData.tipoConcreto.calcularMaterialesNecesarios(ordenData.volumen);
         for (const [material, cantidad] of materialesNecesarios.entries()) {
             const disponible = await this.materialService.verificarDisponibilidad(material.id, cantidad);

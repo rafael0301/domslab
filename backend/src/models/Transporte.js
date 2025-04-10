@@ -56,7 +56,6 @@ class Transporte {
     }
 
     calcularCostoViaje(distancia, tiempo) {
-        // Cálculo básico del costo del viaje
         const costoPorKm = 2.5; // ejemplo
         const costoPorHora = 30; // ejemplo
         return (distancia * costoPorKm) + (tiempo * costoPorHora);

@@ -9,7 +9,6 @@ class VentaService {
     async crearVenta(ventaData) {
         const venta = await this.ventaRepository.create(ventaData);
 
-        // Generar factura usando el Factory
         const facturaData = {
             id: Date.now(),
             ventaId: venta.id,

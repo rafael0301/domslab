@@ -13,7 +13,6 @@ class OrdenCompra {
         this.estado = "Entregada";
         this.fechaRecepcion = new Date();
 
-        // Actualizar stock de materiales recibidos
         for (const [material, cantidad] of this.materialesRequeridos.entries()) {
             material.actualizarStock(cantidad);
         }
@@ -28,7 +27,6 @@ class OrdenCompra {
     }
 
     registrarDevolucion(materialId, cantidad, motivo) {
-        // Buscar el material en la orden
         let materialDevuelto = null;
         let cantidadOriginal = 0;
 

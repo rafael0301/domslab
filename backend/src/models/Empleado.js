@@ -19,6 +19,5 @@ class Empleado extends Persona {
     }
 
     asignarOrden(orden) {
-        // Lógica para asignar una orden de producción al empleado
     }
 }

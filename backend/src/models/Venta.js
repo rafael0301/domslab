@@ -11,7 +11,6 @@ class Venta {
     }
 
     generarFactura() {
-        // Crear una nueva factura basada en la venta
         const factura = new Factura(
             Date.now(),
             this.id,

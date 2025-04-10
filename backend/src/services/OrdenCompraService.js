@@ -13,7 +13,6 @@ class OrdenCompraService {
         const orden = await this.ordenCompraRepository.findById(ordenId);
         if (orden) {
             orden.confirmarRecepcion();
-            // Al confirmar recepción, se actualiza el stock automáticamente
             return this.ordenCompraRepository.update(ordenId, orden);
         }
         return null;

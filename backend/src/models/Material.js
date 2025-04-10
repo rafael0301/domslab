@@ -20,8 +20,6 @@ class Material {
 
     solicitarAbastecimiento(cantidad) {
         console.log(`Solicitando abastecimiento de ${cantidad} ${this.unidadMedida} de ${this.nombre}`);
-        // En una implementación real, esto podría crear una nueva OrdenCompra
-        // o añadir este material a una orden de compra pendiente
         return {
             materialId: this.id,
             cantidad: cantidad,

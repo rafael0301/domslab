@@ -46,14 +46,12 @@ class Equipo {
 
     registrarHorasUso(horas) {
         this.horasUso += horas;
-        // Verificar si necesita mantenimiento preventivo
         if (this.horasUso >= 100) { // ejemplo: cada 100 horas
             this.programarMantenimientoPreventivo();
         }
     }
 
     programarMantenimientoPreventivo() {
-        // Lógica para programar mantenimiento preventivo
         console.log(`Mantenimiento preventivo requerido para equipo ${this.id}`);
     }
 

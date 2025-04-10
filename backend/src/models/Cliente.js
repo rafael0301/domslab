@@ -1,7 +1,7 @@
 class Cliente extends Persona {
     constructor(id, nombre, telefono, direccion, email) {
         super(id, nombre, telefono, direccion, email);
-        this.historialCompras = []; // Lista<Venta>
+        this.historialCompras = [];
     }
 
     agregarCompra(venta) {
