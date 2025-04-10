@@ -15,7 +15,7 @@
     <section class="card p-4">
       <input
           type="text"
-          placeholder="Buscar por nombre o RUC/Cédula..."
+          placeholder="Buscar por nombre o RNC/Cédula..."
           class="input"
           v-model="filtroBusqueda"
       >
@@ -28,7 +28,7 @@
           <thead class="bg-gray-50">
           <tr>
             <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">Nombre / Razón Social</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">RUC / Cédula</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">RNC / Cédula</th>
             <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">Teléfono</th>
             <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">Email</th>
             <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">Último Pedido</th>
@@ -78,7 +78,7 @@
               <input v-model="formCliente.nombre" type="text" required class="input">
             </div>
             <div>
-              <label class="block text-sm font-medium text-text-secondary">RUC / Cédula</label>
+              <label class="block text-sm font-medium text-text-secondary">RNC / Cédula</label>
               <input v-model="formCliente.identificacion" type="text" required class="input">
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -135,8 +135,8 @@ const formCliente = ref(getInitialFormState())
 
 // Datos de ejemplo
 const clientes = ref([
-  { id: 1, nombre: 'Constructora XYZ', identificacion: 'RUC123456789', telefono: '555-1111', email: 'compras@xyz.com', direccion: 'Av. Principal 123', contacto: 'Ing. Pérez', ultimoPedido: '2024-04-08' },
-  { id: 2, nombre: 'Inversiones ABC', identificacion: 'RUC987654321', telefono: '555-2222', email: 'admin@abc.com', direccion: 'Calle Secundaria 45', contacto: 'Lic. García', ultimoPedido: '2024-04-07' },
+  { id: 1, nombre: 'Constructora XYZ', identificacion: 'RNC123456789', telefono: '555-1111', email: 'compras@xyz.com', direccion: 'Av. Principal 123', contacto: 'Ing. Pérez', ultimoPedido: '2024-04-08' },
+  { id: 2, nombre: 'Inversiones ABC', identificacion: 'RNC987654321', telefono: '555-2222', email: 'admin@abc.com', direccion: 'Calle Secundaria 45', contacto: 'Lic. García', ultimoPedido: '2024-04-07' },
   { id: 3, nombre: 'Juan Rodríguez (Personal)', identificacion: '0991234567', telefono: '555-3333', email: 'juan.r@email.com', direccion: 'Urb. Los Pinos', contacto: '', ultimoPedido: '2024-03-15' },
 ])
 

@@ -1,3 +1,5 @@
+const UsuarioFactory = require('../factories/UsuarioFactory');
+
 class GestionUsuariosService {
     constructor(usuarioService, personaRepository, clienteRepository, proveedorRepository, empleadoRepository) {
         this.usuarioService = usuarioService;
@@ -8,23 +10,31 @@ class GestionUsuariosService {
     }
 
     async registrarCliente(clienteData, usuarioData) {
-        const cliente = await this.clienteRepository.create(clienteData);
-        usuarioData.rolId = 2; // Asumiendo que 2 es el ID para el rol "Cliente"
+        const cliente = UsuarioFactory.crearUsuario('CLIENTE', clienteData);
+        await this.clienteRepository.create(cliente);
+
+        usuarioData.rolId = 2;
         const usuario = await this.usuarioService.crearUsuario(usuarioData);
         return { cliente, usuario };
     }
 
     async registrarProveedor(proveedorData, usuarioData) {
-        const proveedor = await this.proveedorRepository.create(proveedorData);
-        usuarioData.rolId = 3; // Asumiendo que 3 es el ID para el rol "Proveedor"
+        const proveedor = UsuarioFactory.crearUsuario('PROVEEDOR', proveedorData);
+        await this.proveedorRepository.create(proveedor);
+
+        usuarioData.rolId = 3;
         const usuario = await this.usuarioService.crearUsuario(usuarioData);
         return { proveedor, usuario };
     }
 
     async registrarEmpleado(empleadoData, usuarioData) {
-        const empleado = await this.empleadoRepository.create(empleadoData);
-        usuarioData.rolId = 4; // Asumiendo que 4 es el ID para el rol "Empleado"
+        const empleado = UsuarioFactory.crearUsuario('EMPLEADO', empleadoData);
+        await this.empleadoRepository.create(empleado);
+
+        usuarioData.rolId = 4;
         const usuario = await this.usuarioService.crearUsuario(usuarioData);
         return { empleado, usuario };
     }
 }
+
+module.exports = GestionUsuariosService;

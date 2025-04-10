@@ -1,3 +1,5 @@
+const DocumentoFactory = require('../factories/DocumentoFactory');
+
 class VentaService {
     constructor(ventaRepository, facturaRepository) {
         this.ventaRepository = ventaRepository;
@@ -7,8 +9,17 @@ class VentaService {
     async crearVenta(ventaData) {
         const venta = await this.ventaRepository.create(ventaData);
 
-        // Generar factura automáticamente
-        const factura = venta.generarFactura();
+        // Generar factura usando el Factory
+        const facturaData = {
+            id: Date.now(),
+            ventaId: venta.id,
+            clienteId: venta.clienteId,
+            total: venta.volumen * venta.obtenerPrecioUnitario(),
+            fechaEmision: new Date(),
+            estado: "Pendiente"
+        };
+
+        const factura = DocumentoFactory.crearDocumento('FACTURA_VENTA', facturaData);
         await this.facturaRepository.create(factura);
 
         return venta;
