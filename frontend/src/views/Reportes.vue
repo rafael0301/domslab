@@ -1,6 +1,5 @@
 <template>
   <div class="space-y-8">
-    <!-- Encabezado y Filtros -->
     <section class="md:flex justify-between items-center space-y-4 md:space-y-0">
       <h1 class="text-2xl font-semibold text-text-primary">Reportes y Análisis</h1>
       <div class="flex items-center space-x-4">
@@ -19,7 +18,6 @@
       </div>
     </section>
 
-    <!-- Resumen de Métricas de Reporte -->
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       <div class="card p-5">
         <p class="text-sm font-medium text-text-secondary">Ingresos Totales (Periodo)</p>
@@ -43,9 +41,7 @@
       </div>
     </section>
 
-    <!-- Gráficos de Reporte -->
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <!-- Gráfico Tendencia Ingresos/Volumen -->
       <div class="card">
         <div class="p-6">
           <h3 class="text-lg font-medium text-text-primary mb-4">Tendencia de Ingresos y Volumen</h3>
@@ -54,7 +50,6 @@
           </div>
         </div>
       </div>
-      <!-- Gráfico Distribución por Cliente -->
       <div class="card">
         <div class="p-6">
           <h3 class="text-lg font-medium text-text-primary mb-4">Distribución de Volumen por Cliente (Top 5)</h3>
@@ -65,7 +60,6 @@
       </div>
     </section>
 
-    <!-- Tabla de Datos (Ej: Resumen por Tipo) -->
     <section class="card">
       <div class="px-6 py-4 border-b border-border">
         <h3 class="text-lg font-medium text-text-primary">Resumen por Tipo de Concreto (Periodo)</h3>
@@ -106,7 +100,6 @@ const clientesChart = ref(null)
 let chartTendencia = null
 let chartClientes = null
 
-// Datos de ejemplo para tabla
 const resumenTipos = ref([
   { tipo: 'H25', volumen: 4500, numPedidos: 85, ingreso: 420750.00, porcentajeIngreso: 45 },
   { tipo: 'H20', volumen: 3200, numPedidos: 60, ingreso: 273600.00, porcentajeIngreso: 29 },
@@ -137,30 +130,29 @@ const createCharts = () => {
     }
   }
 
-  // Gráfico Tendencia
   if (tendenciaChart.value) {
     chartTendencia = new Chart(tendenciaChart.value, {
       type: 'line',
       data: {
-        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'], // Periodo seleccionado
+        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
         datasets: [
           {
             label: 'Ingresos ($)',
             data: [85000, 92000, 110500, 108000, 124500, 131000],
-            borderColor: '#2563eb', // primary
+            borderColor: '#2563eb',
             backgroundColor: 'rgba(37, 99, 235, 0.1)',
             tension: 0.1,
             fill: true,
-            yAxisID: 'y-ingresos' // Asociar al eje Y de ingresos
+            yAxisID: 'y-ingresos' 
           },
           {
             label: 'Volumen (m³)',
-            data: [850, 920, 1105, 1080, 1245, 1310], // Escala diferente
-            borderColor: '#6b7280', // text-secondary
+            data: [850, 920, 1105, 1080, 1245, 1310], 
+            borderColor: '#6b7280', 
             backgroundColor: 'rgba(107, 114, 128, 0.1)',
             tension: 0.1,
-            fill: false, // Sin relleno para la línea de volumen
-            yAxisID: 'y-volumen' // Asociar al eje Y de volumen
+            fill: false, 
+            yAxisID: 'y-volumen' 
           }
         ]
       },
@@ -173,7 +165,7 @@ const createCharts = () => {
             display: true,
             position: 'left',
             title: { display: true, text: 'Ingresos ($)', color: '#2563eb' },
-            grid: { drawOnChartArea: false }, // Solo cuadrícula para un eje
+            grid: { drawOnChartArea: false }, 
             ticks: { color: '#2563eb' }
           },
           'y-volumen': {
@@ -181,7 +173,7 @@ const createCharts = () => {
             display: true,
             position: 'right',
             title: { display: true, text: 'Volumen (m³)', color: '#6b7280' },
-            grid: { drawOnChartArea: false }, // Evitar doble cuadrícula
+            grid: { drawOnChartArea: false }, 
             ticks: { color: '#6b7280' }
           }
         }
@@ -189,7 +181,6 @@ const createCharts = () => {
     })
   }
 
-  // Gráfico Clientes
   if (clientesChart.value) {
     chartClientes = new Chart(clientesChart.value, {
       type: 'bar',
@@ -210,7 +201,7 @@ const createCharts = () => {
       },
       options: {
         ...chartOptionsBase,
-        indexAxis: 'y', // Barras horizontales para mejor legibilidad de nombres
+        indexAxis: 'y', 
         plugins: { legend: { display: false } }
       }
     })
@@ -226,10 +217,8 @@ onMounted(() => {
   createCharts()
 })
 
-// Falta lógica para exportar y cambiar periodo
 
 </script>
 
 <style scoped>
-/* Puedes añadir estilos específicos si lo necesitas */
 </style>

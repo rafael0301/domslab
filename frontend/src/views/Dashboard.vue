@@ -1,10 +1,8 @@
 <template>
   <div class="space-y-8">
-    <!-- KPIs -->
     <section>
       <h2 class="text-xl font-semibold text-text-primary mb-4">Métricas Clave</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- KPI Volumen Total -->
         <div class="card p-4">
           <div class="flex items-center">
             <div class="flex-shrink-0 bg-blue-100 rounded-md p-3">
@@ -17,7 +15,6 @@
             </div>
           </div>
         </div>
-        <!-- KPI Pedidos Completados -->
         <div class="card p-4">
           <div class="flex items-center">
             <div class="flex-shrink-0 bg-green-100 rounded-md p-3">
@@ -30,7 +27,6 @@
             </div>
           </div>
         </div>
-        <!-- KPI Clientes Activos -->
         <div class="card p-4">
           <div class="flex items-center">
             <div class="flex-shrink-0 bg-yellow-100 rounded-md p-3">
@@ -43,7 +39,6 @@
             </div>
           </div>
         </div>
-        <!-- KPI Eficiencia -->
         <div class="card p-4">
           <div class="flex items-center">
             <div class="flex-shrink-0 bg-red-100 rounded-md p-3">
@@ -59,11 +54,8 @@
       </div>
     </section>
 
-    <!-- Contenido Principal (Gráficos y Tabla) -->
     <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <!-- Columna Izquierda -->
       <div class="lg:col-span-2 space-y-6">
-        <!-- Gráfico Volumen Mensual -->
         <div class="card">
           <div class="p-6">
             <h3 class="text-lg font-medium text-text-primary mb-4">Volumen Despachado por Mes (m³)</h3>
@@ -73,7 +65,6 @@
           </div>
         </div>
 
-        <!-- Tabla de Últimos Pedidos -->
         <div class="card">
           <div class="px-6 py-4 border-b border-border flex justify-between items-center">
             <h3 class="text-lg font-medium text-text-primary">Últimos Pedidos</h3>
@@ -117,9 +108,7 @@
         </div>
       </div>
 
-      <!-- Columna Derecha -->
       <div class="lg:col-span-1 space-y-6">
-        <!-- Gráfico Tipos de Concreto -->
         <div class="card">
           <div class="p-6">
             <h3 class="text-lg font-medium text-text-primary mb-4">Distribución por Tipo</h3>
@@ -129,7 +118,6 @@
           </div>
         </div>
 
-        <!-- Podríamos añadir otra tarjeta aquí: ej. Clientes Recientes, Alertas -->
         <div class="card p-6">
           <h3 class="text-lg font-medium text-text-primary mb-4">Accesos Rápidos</h3>
           <div class="space-y-3">
@@ -146,14 +134,13 @@
 <script setup>
 import { ref, computed, onMounted, watch, nextTick } from 'vue'
 import Chart from 'chart.js/auto'
-import 'chartjs-adapter-date-fns' // Para ejes de tiempo si es necesario
+import 'chartjs-adapter-date-fns'
 
 const volumenMensualChart = ref(null)
 const tiposConcretoChart = ref(null)
 let chartVolumen = null
 let chartTipos = null
 
-// Datos de ejemplo para una concretera
 const ultimosPedidos = ref([
   { id: 'PED-00125', cliente: 'Constructora XYZ', tipo: 'H25', volumen: '150', fecha: '2024-04-08', estado: 'Completado' },
   { id: 'PED-00124', cliente: 'Inversiones ABC', tipo: 'H30 Bomb.', volumen: '220', fecha: '2024-04-07', estado: 'Completado' },
@@ -163,7 +150,6 @@ const ultimosPedidos = ref([
   { id: 'PED-00120', cliente: 'Constructora XYZ', tipo: 'H20', volumen: '120', fecha: '2024-04-04', estado: 'Completado' },
 ])
 
-// Mostrar solo los primeros 5 pedidos en el dashboard
 const ultimosPedidosMostrados = computed(() => ultimosPedidos.value.slice(0, 5))
 
 const createCharts = () => {
@@ -172,15 +158,14 @@ const createCharts = () => {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        position: 'bottom', // Leyenda abajo para gráfico de dona
+        position: 'bottom', 
         labels: {
-          color: '#374151' // text-gray-700
+          color: '#374151' 
         }
       }
     }
   }
 
-  // Gráfico Volumen Mensual (Barras)
   if (volumenMensualChart.value) {
     chartVolumen = new Chart(volumenMensualChart.value, {
       type: 'bar',
@@ -197,7 +182,7 @@ const createCharts = () => {
       },
       options: {
         ...chartOptionsBase,
-        plugins: { legend: { display: false } }, // Ocultar leyenda para barras
+        plugins: { legend: { display: false } }, 
         scales: {
           y: {
             beginAtZero: true,
@@ -213,7 +198,6 @@ const createCharts = () => {
     })
   }
 
-  // Gráfico Tipos de Concreto (Dona)
   if (tiposConcretoChart.value) {
     chartTipos = new Chart(tiposConcretoChart.value, {
       type: 'doughnut',
@@ -222,17 +206,17 @@ const createCharts = () => {
         datasets: [{
           data: [25, 35, 20, 15, 5],
           backgroundColor: [
-            '#60a5fa', // blue-400
-            '#2563eb', // blue-600 (primary)
-            '#1d4ed8', // blue-800
-            '#93c5fd', // blue-300
-            '#dbeafe'  // blue-100
+            '#60a5fa', 
+            '#2563eb', 
+            '#1d4ed8', 
+            '#93c5fd', 
+            '#dbeafe'  
           ],
           borderColor: '#ffffff',
           borderWidth: 2,
         }]
       },
-      options: { ...chartOptionsBase, cutout: '60%' } // Hacer el agujero más grande
+      options: { ...chartOptionsBase, cutout: '60%' } 
     })
   }
 }
@@ -251,8 +235,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Añadimos un poco más de espacio entre las secciones si es necesario */
 section + section {
-  margin-top: 2.5rem; /* Ajusta según necesidad */
+  margin-top: 2.5rem; 
 }
 </style>
